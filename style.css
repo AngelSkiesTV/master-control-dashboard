@@ -1,0 +1,108 @@
+:root {
+    --sidebar-color: #2c3e50;
+    --main-bg: #f4f7f6;
+    --accent-color: #3498db;
+    --text-white: #ffffff;
+    --card-bg: #ffffff;
+    --text-dark: #333333;
+}
+
+body {
+    font-family: 'Segoe UI', Tahoma, sans-serif;
+    display: flex;
+    margin: 0;
+    background-color: var(--main-bg);
+    color: var(--text-dark);
+}
+
+.sidebar {
+    width: 250px;
+    height: 100vh;
+    background-color: var(--sidebar-color);
+    color: var(--text-white);
+    padding: 20px;
+    display: flex;
+    flex-direction: column;
+}
+
+.sidebar h2 {
+    margin-top: 0;
+    border-bottom: 1px solid var(--accent-color);
+    padding-bottom: 10px;
+}
+
+.sidebar nav {
+    display: flex;
+    flex-direction: column;
+    gap: 10px;
+    margin-top: 20px;
+}
+
+.sidebar button {
+    background: none;
+    border: none;
+    color: var(--text-white);
+    text-align: left;
+    padding: 10px;
+    cursor: pointer;
+    font-size: 16px;
+    transition: background 0.3s;
+}
+
+.sidebar button:hover {
+    background-color: var(--accent-color);
+    border-radius: 4px;
+}
+
+.main-content {
+    padding: 40px;
+    flex-grow: 1;
+    overflow-y: auto;
+}
+
+.card {
+    background: var(--card-bg);
+    padding: 25px;
+    border-left: 5px solid var(--accent-color);
+    box-shadow: 0 4px 6px rgba(0,0,0,0.1);
+    border-radius: 4px;
+}
+
+.iframe-container {
+    border: 2px solid var(--accent-color);
+    border-radius: 8px;
+    overflow: hidden;
+    background: #fff;
+}
+
+#projectSelector {
+    padding: 10px;
+    font-size: 16px;
+    width: 100%;
+    margin-bottom: 10px;
+    border: 1px solid #ccc;
+    border-radius: 4px;
+}
+
+ul {
+    list-style: none;
+    padding: 0;
+}
+
+li a {
+    display: block;
+    padding: 12px;
+    margin-bottom: 8px;
+    background-color: #ecf0f1;
+    color: var(--sidebar-color);
+    text-decoration: none;
+    border-radius: 4px;
+    font-weight: 600;
+    transition: background 0.3s, color 0.3s;
+}
+
+li a:hover {
+    background-color: var(--accent-color);
+    color: white;
+}
+
