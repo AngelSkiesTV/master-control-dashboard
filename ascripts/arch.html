@@ -1,0 +1,49 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <title>ARCH | AngelSkies Station</title>
+    <link rel="stylesheet" href="../style.css">
+</head>
+<body>
+
+    <!-- ARCH Command Splash -->
+    <div class="splash-container">
+        <h1>ARCH Station</h1>
+        <p>System Status: KimLink Protocol Active</p>
+        <button onclick="window.location.href='../index.html'">Return to Command</button>
+    </div>
+
+    <!-- Gameplay Environment Area -->
+    <section class="node-content">
+        <div class="card">
+            <h2>Mission Control</h2>
+            <div id="quest-display">
+                <p>Initializing quest-giver logic...</p>
+            </div>
+            
+            <div id="game-tools" style="margin-top: 20px;">
+                <button onclick="activateKimLink()">Initiate KimLink Protocol</button>
+            </div>
+        </div>
+    </section>
+
+    <!-- ARCH Logic Engine -->
+    <script>
+        // ARCH Station-specific game logic
+        function activateKimLink() {
+            console.log("KimLink Protocol engaged.");
+            document.getElementById('quest-display').innerHTML = 
+                "<p><strong>System:</strong> KimLink signal locked. Accessing ARCH environment assets via Unity/Unreal bridge...</p>";
+        }
+
+        // Integration with global engine-agnostic JSON system
+        async function loadArchAssets() {
+            const response = await fetch('../config/arch_data.json');
+            const data = await response.json();
+            console.log("ARCH assets initialized:", data);
+        }
+    </script>
+    <script src="../script.js"></script>
+</body>
+</html>
