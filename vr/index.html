@@ -1,0 +1,47 @@
+<!DOCTYPE html>
+<html lang="en"><head><meta charset="utf-8"><meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>KL CommonGround – VR Room</title>
+<script src="https://aframe.io/releases/1.5.0/aframe.min.js"></script>
+<style>#hud{position:fixed;top:10px;left:10px;z-index:10;background:#000a;color:#fff;font:14px sans-serif;padding:8px 12px;border-radius:8px;max-width:320px}</style>
+<script>
+AFRAME.registerComponent('agent',{schema:{name:{type:'string'},task:{type:'string'}},
+init(){const el=this.el,d=this.data;
+el.addEventListener('mouseenter',()=>el.setAttribute('scale','1.1 1.1 1.1'));
+el.addEventListener('mouseleave',()=>el.setAttribute('scale','1 1 1'));
+el.addEventListener('click',()=>{const b=document.querySelector('#board');
+b.setAttribute('value',d.name+'\n\nTask: '+d.task+'\n\nStatus: received - working...');
+document.querySelector('#hud').innerText=d.name+': '+d.task;
+setTimeout(()=>b.setAttribute('value',d.name+'\n\nTask: '+d.task+'\n\nStatus: done'),2500);});}});
+</script></head><body>
+<div id="hud">KL CommonGround — click/point at an agent to give it a task. On Quest: open in the browser, tap the VR goggles.</div>
+<a-scene renderer="antialias:true" background="color:#0b1026">
+ <a-entity light="type:ambient;intensity:0.6"></a-entity>
+ <a-entity light="type:point;intensity:1.2" position="0 5 0"></a-entity>
+ <a-circle radius="12" rotation="-90 0 0" color="#1b2a4a"></a-circle>
+ <a-ring radius-inner="2.8" radius-outer="3" rotation="-90 0 0" position="0 0.01 0" color="#66ccff"></a-ring>
+ <a-text value="KL CommonGround\nwhere AI avatars meet human avatars" align="center" position="0 3.6 -6" width="8" color="#9fe3ff"></a-text>
+ <a-plane position="0 1.8 -6" width="4" height="1.8" color="#111a33" opacity="0.9"></a-plane>
+ <a-text id="board" value="Task board\nPoint at an agent and click." align="center" position="0 1.8 -5.98" width="3.6" color="#fff"></a-text>
+ <!-- Agents -->
+ <a-entity class="clickable" agent="name:AngelSkies;task:Check GitHub repos and report updates" position="-3 0 -3">
+  <a-cylinder radius="0.3" height="1.2" position="0 0.6 0" color="#ffcc33"></a-cylinder><a-sphere radius="0.25" position="0 1.45 0" color="#ffe08a"></a-sphere>
+  <a-text value="AngelSkies" align="center" position="0 2 0" width="4"></a-text></a-entity>
+ <a-entity class="clickable" agent="name:Library Node;task:Index documents and media" position="-1 0 -4">
+  <a-cylinder radius="0.3" height="1.2" position="0 0.6 0" color="#66ccff"></a-cylinder><a-sphere radius="0.25" position="0 1.45 0" color="#aee6ff"></a-sphere>
+  <a-text value="Library Node" align="center" position="0 2 0" width="4"></a-text></a-entity>
+ <a-entity class="clickable" agent="name:Angel Skies Node;task:Run AngelSkiesTV content tasks" position="1 0 -4">
+  <a-cylinder radius="0.3" height="1.2" position="0 0.6 0" color="#ff7ab6"></a-cylinder><a-sphere radius="0.25" position="0 1.45 0" color="#ffc2dd"></a-sphere>
+  <a-text value="Angel Skies Node" align="center" position="0 2 0" width="4"></a-text></a-entity>
+ <a-entity class="clickable" agent="name:Data Nexus;task:Sync data between services" position="3 0 -3">
+  <a-cylinder radius="0.3" height="1.2" position="0 0.6 0" color="#7dff9a"></a-cylinder><a-sphere radius="0.25" position="0 1.45 0" color="#c8ffd4"></a-sphere>
+  <a-text value="Data Nexus" align="center" position="0 2 0" width="4"></a-text></a-entity>
+ <a-entity class="clickable" agent="name:WHOLEZ Node;task:Route agent API tasks" position="0 0 -2">
+  <a-torus radius="0.4" radius-tubular="0.06" position="0 1.2 0" color="#c58cff" animation="property:rotation;to:0 360 0;loop:true;dur:6000;easing:linear"></a-torus>
+  <a-text value="WHOLEZ Node" align="center" position="0 2 0" width="4"></a-text></a-entity>
+ <!-- Human player -->
+ <a-entity id="rig" movement-controls position="0 0 2">
+  <a-entity camera look-controls wasd-controls position="0 1.6 0"><a-entity cursor="rayOrigin:mouse" raycaster="objects:.clickable"></a-entity></a-entity>
+  <a-entity laser-controls="hand:right" raycaster="objects:.clickable"></a-entity>
+  <a-entity laser-controls="hand:left" raycaster="objects:.clickable"></a-entity>
+ </a-entity>
+</a-scene></body></html>
